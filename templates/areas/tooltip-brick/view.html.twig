@@ -1,0 +1,21 @@
+
+{% if editmode %}
+    {{ pimcore_select("float_direction", {
+            "store": [
+                ["float-start", "Links"],
+                ["float-end", "Rechts"]
+            ]
+        }) }}
+    <p class=" section-heading text-uppercase text-secondary">{{ pimcore_input('input_tooltip') }}</p>
+{% else %}
+{% set tooltipText = pimcore_input('input_tooltip').getData() %}
+<span class="{{ pimcore_select("float_direction").getData() }} card__infoicon">
+    <i class="fa-sharp fa-solid fa-question fa-2xl greenHeadline"></i>  
+</span>
+
+  
+  <div class="card_container">
+    <p class="card__description">{{tooltipText}}</p>
+  </div>
+{% endif %}
+

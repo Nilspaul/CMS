@@ -1,0 +1,7 @@
+<div class="gallery"  style="--numImages: {{ images|length }};">
+{% for image in images %}
+  <span style="--i:{{loop.index}}">
+    <img src="{{image}}" alt="" />
+  </span>
+{% endfor %}
+</div>

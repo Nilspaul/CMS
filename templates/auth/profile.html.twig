@@ -1,0 +1,43 @@
+<div id="popupContainerLogout">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="logout-card">
+            <div class="upper">
+                <img src="{{ asset('static/assets/img/profile_backgroundimage.jpg') }}" class="profile-img" alt="Background Image">
+                <div class="user">
+                    <div class="profile rounded-circle">
+                        <img src="{{ user.getImage() }}" class="rounded-circle" alt="User Image">
+                        <div class="overlay">
+                            <i id="editProfileIcon" class="fa-regular fa-2xl fa-pen-to-square fa-beat"></i>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="profile_informations">
+				<div class="text-center">
+					<h1 class="my-3 greenHeadline">
+						{{ user.getUsername() }}
+					</h1>
+					<div class="text-center">
+						<h6 class="mb-0">
+							{{ user.getSpecialization() }}
+                        </h6>
+					</div>
+					<div class="text-center">
+						<h6 class="mb-0">
+							{{ user.getEmail() }}
+                        </h6>
+					</div>
+				</div>
+				<div class="centered my-5">
+					<a href="{{ path('logout') }}" class="logout-btn">
+						<span class="btn-text">
+							{{ 'LogoutBtn'|trans}}
+						</span>
+						<i class="fa-solid fa-sign-out fa-lg btn-icon"></i>
+					</a>
+				</div>
+			</div>
+			{{ include('/auth/editProfile.html.twig') }}
+		</div>
+	</div>
+</div>

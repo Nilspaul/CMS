@@ -1,0 +1,14 @@
+{% if editmode %}
+    {{ pimcore_select("viewerData", {
+        "store": viewerSelect,
+    }) }}
+{% endif %}
+
+{% set selectedData = pimcore_select("viewerData").getData() %}
+
+{% for view in viewer %}
+    {% if view.name == selectedData %}
+        <script type="module" src="{{view.splinescript}}"></script>
+        <spline-viewer url="{{view.splineviewer}}"></spline-viewer>
+    {% endif %}
+{% endfor %}

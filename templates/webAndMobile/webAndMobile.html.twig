@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+{{ pimcore_areablock('headlineWeb', { allowed: ['headline-brick', 'subheadline-brick', 'centeredtext-brick', 'spacer-brick'] }) }}
+
+{% if editmode %}
+    {{ pimcore_select("options_value", {
+        "store": timelineOptions|map(option => [option.value, option.value]),
+    }) }}
+{% endif %}
+
+{% set selectedOption = pimcore_select("options_value").getData() %}
+  
+{{ pimcore_areablock('timelineWeb', {
+    allowed: ['timeline-brick'],
+    params: [selectedOption]
+}) }}
+
+{{ pimcore_areablock('endWeb', { allowed: ['centeredtext-brick', 'spacer-brick'] }) }}
+
+{% endblock %}

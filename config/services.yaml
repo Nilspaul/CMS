@@ -1,0 +1,181 @@
+parameters:
+    secret: q1c8OsDl0cQAOQdejh8OQ6WAIoiOztgxBUyTA+wOEPQ=
+
+    # customize the full path to external executables
+    # normally they are auto-detected by `which program` or auto-discovered in the configured path in
+    # System Settings -> General -> Additional $PATH variable
+    # but in general it's a good idea to have your programs in your $PATH environment variable (system wide)
+
+    #pimcore_executable_composer: php /opt/vendor/bin/composer.phar
+    #pimcore_executable_html2text: /usr/local/html2text/bin/html2text
+    #pimcore_executable_soffice: /opt/libreoffice/bin/soffice
+    #pimcore_executable_gs: /opt/ghostscript/bin/gs
+    #pimcore_executable_pdftotext: /opt/tools/pdftotext
+    #pimcore_executable_xvfb-run: /opt/tools/xvfb-run
+    #pimcore_executable_pngcrush: /opt/tools/pngcrush
+    #pimcore_executable_zopflipng: /opt/tools/zopflipng
+    #pimcore_executable_pngout: /opt/tools/pngout
+    #pimcore_executable_advpng: /opt/tools/advpng
+    #pimcore_executable_cjpeg: /opt/tools/cjpeg
+    #pimcore_executable_jpegoptim: /opt/tools/jpegoptim
+    #pimcore_executable_php: /usr/local/custom-php/bin/php
+    #pimcore_executable_nice: /opt/tools/nice
+    #pimcore_executable_nohup: /opt/tools/nohup
+    #pimcore_executable_ffmpeg: /opt/tools/ffmpeg
+    #pimcore_executable_exiftool: /opt/tools/exiftool
+    #pimcore_executable_wkhtmltoimage: /usr/local/bin/wkhtmltoimage
+    #pimcore_executable_timeout: /usr/bin/timeout
+    #pimcore_executable_facedetect: /usr/bin/facedetect
+    # graphviz
+    #pimcore_executable_dot: /usr/bin/dot
+
+services:
+    App\Middleware\RouteBlockingMiddleware:
+        arguments:
+            $blockedRoutes:
+                - '/Mediaproduction'
+                - '/Medienproduktion'
+                - '/WebUndMobile'
+                - '/WebAndMobile'
+        tags:
+            - { name: kernel.event_subscriber }
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
+        public: false
+    RealRashid\SweetAlert\ToSweetAlertService: ~
+    RealRashid\SweetAlert\Flash\Alert: ~
+    #
+    # CONTROLLERS
+    #
+
+    # auto-register all controllers as services
+    App\Controller\:
+        resource: '../src/Controller'
+        public: true
+        tags: [ 'controller.service_arguments' ]
+
+
+    #
+    # COMMANDS
+    #
+
+    # auto-register all commands as services
+    App\Command\:
+        resource: '../src/Command/*'
+        tags: [ 'console.command' ]
+
+
+
+    # Example custom templating helper
+    # App\Templating\Helper\Example:
+    #     # templating helpers need to be public as they
+    #     # are fetched from the container on demand
+    #     public: true
+    #     tags:
+    #         - { name: templating.helper, alias: fooBar }
+
+    # Example event listener for objects
+    # App\EventListener\TestListener:
+    #     tags:
+    #         - { name: kernel.event_listener, event: pimcore.dataobject.preUpdate, method: onObjectPreUpdate }
+    App\Document\Areabrick\TeamListBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: team-list-brick }
+
+    App\Document\Areabrick\FeatureListBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: feature-list-brick }
+
+    App\Document\Areabrick\PortfolioListBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: portfolio-list-brick }
+
+    App\Document\Areabrick\SpacerBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: spacer-brick }
+
+    App\Document\Areabrick\HeadlineBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: headline-brick }
+
+    App\Document\Areabrick\SubheadlineBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: subheadline-brick }
+
+    App\Document\Areabrick\CenteredTextBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: centeredtext-brick }
+
+    App\Document\Areabrick\TimelineBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: timeline-brick }
+
+    App\Document\Areabrick\SplineBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: spline-brick }
+
+    App\Document\Areabrick\AlgorithmBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: algorithm-brick }
+    
+    App\Document\Areabrick\ExpansionPanelBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: expansion-panel-brick }
+    
+    App\Document\Areabrick\VideoSliderBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: videoslider-brick }
+
+    App\Document\Areabrick\CustomCubeBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: customcube-brick }
+
+    App\Document\Areabrick\TooltipBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: tooltip-brick }
+    
+    App\Document\Areabrick\SectionImageTextBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: section-image-text-brick }
+
+    App\Document\Areabrick\ImageGalleryBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: image-gallery-brick }
+
+    App\Document\Areabrick\BusinessCardBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: business-card-brick }
+    
+    App\Document\Areabrick\ImageBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: image-brick }
+
+    App\Document\Areabrick\FileBrick:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: file-brick }
+    

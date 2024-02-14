@@ -1,0 +1,16 @@
+<div class="container_video">
+	{% for link in links %}
+		<div class="mySlides">
+			<div class="numbertext">
+				{{ loop.index }}/{{ links|length }}
+			</div>
+			<iframe class="w-100" src="{{ link.link }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+			<div class="caption-container">
+				<p id="caption">{{fileNames[(loop.index)-1]}}</p>
+			</div>
+		</div>
+	{% endfor %}
+	<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+	<a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>

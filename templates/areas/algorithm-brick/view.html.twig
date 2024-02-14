@@ -1,0 +1,39 @@
+<div id="sortAlgorithm" data-selected="insertion">
+    <div class="d-flex align-items-center">
+        <h3 class="section-heading text-uppercase text-secondary">
+            Insertion Sort
+        </h3>
+        <i class="mb-2 ms-2 fa-solid fa-caret-down"></i>
+    </div>
+    <div id="sortAlgorithm-options">
+        <div class="sortAlgorithm-option" data-value="insertion">
+            Insertion Sort 
+        </div>
+        <div class="sortAlgorithm-option" data-value="bubble">
+            Bubble Sort  
+        </div>
+        <div class="sortAlgorithm-option" data-value="selection">
+            Selection Sort 
+        </div>
+    </div>
+</div>
+<br>
+<div class="my-3">
+    <label for="arrayElements">
+        {{ 'NumberSequence'|trans }}:       
+    </label>
+    <input type="text" id="arrayElements" name="arrayElements" required placeholder="input number less than 70">
+</div>
+<br>
+<button onclick="sortArray()" class="my-3 btn btn-primary text-uppercase" type="button" id="sortButton">
+    {{ 'Sort'|trans }}        
+</button>
+<button onclick="generateAndSetRandomArray()" id="randomButton" class="my-3 btn btn-primary text-uppercase" type="button">
+    {{ 'Random'|trans }}               
+</button>
+<div id="barsContainer">
+    <div id="bars"></div>
+</div>
+
+    
+            
